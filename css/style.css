@@ -33,7 +33,7 @@ nav ul li a {
     text-align: center;
     padding: 50px;
     background: url('hero-image.jpg') no-repeat center center/cover;
-    color: white;
+    color: green;
 }
 
 .hero h2 {
@@ -57,43 +57,61 @@ nav ul li a {
     border: none;
 }
 
-.products {
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     text-align: center;
-    padding: 50px;
 }
 
-.product-list {
+header {
+    background: #4CAF50;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#product-list {
     display: flex;
     justify-content: center;
-    gap: 20px;
     flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .product {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
     width: 250px;
+    text-align: center;
 }
 
 .product img {
-    width: 100%;
-    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
 }
 
-.price {
-    display: block;
-    font-size: 1.2em;
-    color: #4CAF50;
-    margin: 10px 0;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #4CAF50;
+button {
+    background: #4CAF50;
     color: white;
-    margin-top: 20px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#cart-container {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
 }
