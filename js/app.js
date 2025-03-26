@@ -1,5 +1,5 @@
 function loadProducts() {
-    fetch("http://localhost:4000/products") 
+    fetch('http://localhost:4000/products')
         .then(response => response.json())
         .then(data => {
             let productList = document.getElementById("product-list");
@@ -10,18 +10,21 @@ function loadProducts() {
                 productDiv.classList.add("col-md-4", "mb-4");
 
                 productDiv.innerHTML = `
-                    <div class="card h-100 shadow-sm">
-                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    <div class="card h-100 shadow-sm mx-3">
+                        <div class="ratio ratio-4x3">
+                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">${product.name}</h5>
                             <p class="card-text">${product.description}</p>
                             <p class="card-text"><strong>$${product.price.toFixed(2)}</strong></p>
-                            <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
+                            <button class="btn btn-primary mt-auto" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
                                 Add to Cart
                             </button>
                         </div>
                     </div>
                 `;
+
                 productList.appendChild(productDiv);
             });
         })
