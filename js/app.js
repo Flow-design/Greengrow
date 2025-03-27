@@ -1,34 +1,60 @@
+document.addEventListener("DOMContentLoaded", function () {
+    loadProducts();
+    
+    
+    document.getElementById("searchInput").addEventListener("input", function () {
+        let searchValue = this.value.toLowerCase();
+        filterProducts(searchValue);
+    });
+});
+
+let allProducts = [];
+
 function loadProducts() {
-    fetch('http://localhost:4000/products')
+    fetch("http://localhost:4000/products")
         .then(response => response.json())
         .then(data => {
-            let productList = document.getElementById("product-list");
-            productList.innerHTML = "";
-
-            data.forEach(product => {
-                let productDiv = document.createElement("div");
-                productDiv.classList.add("col-md-4", "mb-4");
-
-                productDiv.innerHTML = `
-                    <div class="card h-100 shadow-sm mx-3">
-                        <div class="ratio ratio-4x3">
-                            <img src="${product.image}" class="card-img-top" alt="${product.name}">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">${product.name}</h5>
-                            <p class="card-text">${product.description}</p>
-                            <p class="card-text"><strong>$${product.price.toFixed(2)}</strong></p>
-                            <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-                productList.appendChild(productDiv);
-            });
+            allProducts = data; 
+            displayProducts(allProducts);
         })
         .catch(error => console.error("Error loading products:", error));
+}
+
+function displayProducts(products) {
+    let productList = document.getElementById("product-list");
+    productList.innerHTML = "";
+
+    products.forEach(product => {
+        let productDiv = document.createElement("div");
+        productDiv.classList.add("col-md-4", "mb-4");
+
+        productDiv.innerHTML = `
+            <div class="card h-100 shadow-sm">
+                <div class="ratio ratio-4x3">
+                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${product.name}</h5>
+                    <p class="card-text">${product.description}</p>
+                    <p class="card-text"><strong>$${product.price.toFixed(2)}</strong></p>
+                    <button class="btn btn-primary mt-auto" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        `;
+
+        productList.appendChild(productDiv);
+    });
+}
+
+function filterProducts(searchValue) {
+    let filteredProducts = allProducts.filter(product =>
+        product.name.toLowerCase().includes(searchValue) ||
+        product.description.toLowerCase().includes(searchValue)
+    );
+
+    displayProducts(filteredProducts);
 }
 
 function updateCartUI() {
