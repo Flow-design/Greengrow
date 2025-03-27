@@ -29,7 +29,7 @@ function displayProducts(products) {
         productDiv.classList.add("col-md-4", "mb-4");
 
         productDiv.innerHTML = `
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow-sm mx-3">
                 <div class="ratio ratio-4x3">
                     <img src="${product.image}" class="card-img-top" alt="${product.name}">
                 </div>
