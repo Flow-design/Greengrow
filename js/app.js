@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let allProducts = [];
 
 function loadProducts() {
-    fetch("http://localhost:4000/products")
+    fetch("https://greengrow-kbli.onrender.com/products")
         .then(response => response.json())
         .then(data => {
             allProducts = data; 
