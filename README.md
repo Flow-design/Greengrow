@@ -1,5 +1,5 @@
 GreenGrow
-Thus is a web  application designed to help users get  good fertilizers easily with no struggles.
+This is a web  application designed to help users get  good fertilizers easily with no struggles.
 GreenGrow/
 │── css/
 │   ├── style.css
